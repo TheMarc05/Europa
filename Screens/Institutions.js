@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from "react";
 import {
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    TextInput,
-    Image,
-    View,
-    TouchableOpacity,
-    ScrollView,
-    Keyboard,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  Image,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Keyboard,
 } from "react-native";
 import StateListItem from "../Components/StateListItem";
 import { LinearGradient } from 'expo-linear-gradient';
 import { db } from '../firebase';
 
-const Home = ({ navigation }) => {
+const Institutions = ({ navigation }) => {
 
     const [textSearch, setTextSearch] = useState('');
     const [state, setState] = useState([]);
 
     useEffect(() => {
-        const unsubscribe = db.collection("state").onSnapshot((snapshot) => {
+        const unsubscribe = db.collection("institutii").onSnapshot((snapshot) => {
             setState(
                 snapshot.docs.map((doc) => ({
                     data: doc.data(),
@@ -31,13 +31,11 @@ const Home = ({ navigation }) => {
         return unsubscribe;
     }, [navigation]);
 
-    const enterState = (id, nume, stateFlag, capital, details) => {
-        navigation.navigate("State Room", {
+    const enterState = (id, stateName, stateFlag) => {
+        navigation.navigate("Institution Room", {
             id: id,
-            nume: nume,
-            stateFlag: stateFlag,
-            capital: capital,
-            details: details
+            stateName: stateName,
+            stateFlag: stateFlag
         });
     };
 
@@ -69,7 +67,7 @@ const Home = ({ navigation }) => {
                 style={styles.background}
             />
             <Text style={{ marginTop: 85, fontSize: 24, textAlign: 'center', color: '#3570EC', fontWeight: '500' }}>
-                Statele Uniunii Europene
+                Institutiile Uniunii Europene
             </Text>
 
             <View style={{ marginBottom: 40, marginTop: 30 }}>
@@ -89,19 +87,19 @@ const Home = ({ navigation }) => {
             </View>
 
 
-            <ScrollView style={{ bottom: 20, height: '100%' }}>
+
+            <ScrollView style={{ height: '100%' }}>
                 {
-                    state.filter(filterZZZ).map(({ data }) => (
-                        <StateListItem key={data.id} enterState={enterState} stateName={data.nume} id={data.id} stateFlag={data.flag} capital={data.capitala} details={data.detalii} />
+                    state.filter(filterZZZ).map(({ id, data: { nume, flag } }) => (
+                        <StateListItem key={id} enterChat={enterState} stateName={nume} id={id} stateFlag={flag} />
                     ))
                 }
             </ScrollView>
-
         </View>
     );
 }
 
-export default Home
+export default Institutions
 
 const styles = StyleSheet.create({
     container: {
