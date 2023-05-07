@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import StateRoom from './Screens/StateRoom';
 import TabStack from './Screens/TabStack';
+import InstitutionRoom from './Screens/InstitutionRoom';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -18,6 +19,7 @@ export default function App() {
 
         <Stack.Screen options={{ headerShown: false }} name="Tab Stack" component={TabStack} />
         <Stack.Screen options={{ headerShown: false }} name="State Room" component={StateRoom} />
+        <Stack.Screen options={{ headerShown: false }} name="Institution Room" component={InstitutionRoom} />
 
       </Stack.Navigator>
     </NavigationContainer>

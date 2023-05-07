@@ -10,18 +10,18 @@ import {
   ScrollView,
   Keyboard,
 } from "react-native";
-import StateListItem from "../Components/StateListItem";
+import InstitutionListItem from "../Components/InstitutionListItem";
 import { LinearGradient } from 'expo-linear-gradient';
 import { db } from '../firebase';
 
 const Institutions = ({ navigation }) => {
 
     const [textSearch, setTextSearch] = useState('');
-    const [state, setState] = useState([]);
+    const [institution, setInstitution] = useState([]);
 
     useEffect(() => {
         const unsubscribe = db.collection("institutii").onSnapshot((snapshot) => {
-            setState(
+            setInstitution(
                 snapshot.docs.map((doc) => ({
                     data: doc.data(),
                 }))
@@ -31,22 +31,23 @@ const Institutions = ({ navigation }) => {
         return unsubscribe;
     }, [navigation]);
 
-    const enterState = (id, stateName, stateFlag) => {
+    const enterInstitution = (id, institutionName, institutionPhoto, details) => {
         navigation.navigate("Institution Room", {
             id: id,
-            stateName: stateName,
-            stateFlag: stateFlag
+            institutionName: institutionName,
+            institutionPhoto: institutionPhoto,
+            details: details
         });
     };
 
-    function filterZZZ(state) {
+    function filterZZZ(institution) {
         try {
-            if (state.data.nume == '') {
+            if (institution.data.nume == '') {
                 return true;
             }
             try {
 
-                if (state.data.nume.toLowerCase().includes(textSearch.toLowerCase()))
+                if (institution.data.nume.toLowerCase().includes(textSearch.toLowerCase()))
                     return true;
 
             } catch (err) {
@@ -90,8 +91,8 @@ const Institutions = ({ navigation }) => {
 
             <ScrollView style={{ height: '100%' }}>
                 {
-                    state.filter(filterZZZ).map(({ id, data: { nume, flag } }) => (
-                        <StateListItem key={id} enterChat={enterState} stateName={nume} id={id} stateFlag={flag} />
+                    institution.filter(filterZZZ).map(({ data }) => (
+                        <InstitutionListItem key={data.id} enterInstitution={enterInstitution} institutionName={data.nume} id={data.id} institutionPhoto={data.photo} details={data.detalii} />
                     ))
                 }
             </ScrollView>
