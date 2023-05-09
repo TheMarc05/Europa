@@ -89,7 +89,7 @@ const Home = ({ navigation }) => {
             </View>
 
 
-            <ScrollView style={{ bottom: 20, height: '100%' }}>
+            <ScrollView style={{ bottom: 20, height: '70%' }}>
                 {
                     state.filter(filterZZZ).map(({ data }) => (
                         <StateListItem key={data.id} enterState={enterState} stateName={data.nume} id={data.id} stateFlag={data.flag} capital={data.capitala} details={data.detalii} />

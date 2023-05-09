@@ -45,7 +45,7 @@ const InstitutionRoom = ({ navigation, route }) => {
             <TouchableOpacity
                 raised
                 onPress={() => { navigation.goBack() }}
-                style={{ alignSelf: "flex-start", top: -25 }}
+                style={{ alignSelf: "flex-start", top: -85 }}
             >
                 <Image
                     source={require("../assets/leftarrow.png")}

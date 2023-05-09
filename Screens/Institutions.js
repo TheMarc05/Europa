@@ -89,7 +89,7 @@ const Institutions = ({ navigation }) => {
 
 
 
-            <ScrollView style={{ height: '100%' }}>
+            <ScrollView style={{ height: '70%' }}>
                 {
                     institution.filter(filterZZZ).map(({ data }) => (
                         <InstitutionListItem key={data.id} enterInstitution={enterInstitution} institutionName={data.nume} id={data.id} institutionPhoto={data.photo} details={data.detalii} />
@@ -106,9 +106,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        // //alignItems: 'center',
+        //alignItems: 'center',
         alignContent: 'center',
-        // backgroundColor: '#ADD8E6',
+        //backgroundColor: '#ADD8E6',
 
 
     },

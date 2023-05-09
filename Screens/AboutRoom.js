@@ -10,28 +10,11 @@ import {
     ScrollView,
     Keyboard,
 } from "react-native";
-import StateListItem from "../Components/StateListItem";
 import { LinearGradient } from 'expo-linear-gradient';
-import { db } from '../firebase';
 
-const StateRoom = ({ navigation, route }) => {
 
-    const [textSearch, setTextSearch] = useState('');
-    const [state, setState] = useState([]);
-
-    useEffect(() => {
-        const unsubscribe = db.collection("state").onSnapshot((snapshot) => {
-            setState(
-                snapshot.docs.map((doc) => ({
-                    data: doc.data(),
-                }))
-            );
-        });
-
-        return unsubscribe;
-    }, [navigation]);
-    
-
+const AboutRoom = ({ navigation, route }) => {
+    console.log("dasda: " + route.params.aboutPhoto)
     return (
         <View>
             <LinearGradient
@@ -41,7 +24,7 @@ const StateRoom = ({ navigation, route }) => {
             />
 
             <Text style={{ marginTop: 85, fontSize: 24, textAlign: 'center', color: 'black', fontWeight: '500' }}>
-                {route.params.nume}
+                {route.params.aboutName}
             </Text>
 
             <TouchableOpacity
@@ -55,25 +38,21 @@ const StateRoom = ({ navigation, route }) => {
                 />
             </TouchableOpacity>
 
-            <Image
-                style={{ alignSelf: "center", width: 220, height: 150, marginTop: 30, marginBottom: 30 }}
+            {/* <Image
+                style={{ alignSelf: "center", width: 290, height: 230, marginTop: 20, marginBottom: 30 }}
                 source={{
-                    uri: route.params.stateFlag
+                    uri: route.params.aboutPhoto
                 }}
-            />
-            <Text style={styles.capital}>
-                Capitala: {route.params.capital}
-            </Text>
+            /> */}
             <Text style={styles.details}>
                 {route.params.details}
             </Text>
-            
 
         </View>
     );
 }
 
-export default StateRoom
+export default AboutRoom
 
 const styles = StyleSheet.create({
     container: {
@@ -89,15 +68,6 @@ const styles = StyleSheet.create({
         right: 0,
         top: 0,
         height: 900,
-    },
-    capital: {
-        color: "black",
-        alignSelf: "flex-start",
-        marginBottom: 20,
-        marginTop: 10,
-        fontSize: 20,
-        fontWeight: "600",
-        alignSelf: "center",
     },
     details: {
         color: "black",
