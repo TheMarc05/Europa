@@ -11,48 +11,32 @@ import {
     Keyboard,
 } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
-import { db } from '../firebase';
 
 const InstitutionRoom = ({ navigation, route }) => {
-
-    const [textSearch, setTextSearch] = useState('');
-    const [institution, setInstitution] = useState([]);
-
-    useEffect(() => {
-        const unsubscribe = db.collection("institutii").onSnapshot((snapshot) => {
-            setInstitution(
-                snapshot.docs.map((doc) => ({
-                    data: doc.data(),
-                }))
-            );
-        });
-
-        return unsubscribe;
-    }, [navigation]);
 
     return (
         <View>
             <LinearGradient
-                // Background Linear Gradient
+                Background Linear Gradient
                 colors={['#ADD8E6', '#D6F3F2', 'white']}
                 style={styles.background}
             />
 
-            <Text style={{ marginTop: 85, fontSize: 24, textAlign: 'center', color: 'black', fontWeight: '500' }}>
+            <Text style={{ marginTop: 85, marginHorizontal: 50, fontSize: 24, textAlign: 'center', color: 'black', fontWeight: '500' }}>
                 {route.params.institutionName}
             </Text>
 
             <TouchableOpacity
                 raised
                 onPress={() => { navigation.goBack() }}
-                style={{ alignSelf: "flex-start", top: -85 }}
+                style={{ alignSelf: "flex-start", top: -25 }}
             >
                 <Image
                     source={require("../assets/leftarrow.png")}
                     style={{ marginLeft: 10, width: 20, height: 20 }}
                 />
             </TouchableOpacity>
-
+            <ScrollView style={{bottom: 10, height: '75%' }}>
             <Image
                 style={{ alignSelf: "center", width: 290, height: 230, marginTop: 20, marginBottom: 30 }}
                 source={{
@@ -62,6 +46,7 @@ const InstitutionRoom = ({ navigation, route }) => {
             <Text style={styles.details}>
                 {route.params.details}
             </Text>
+            </ScrollView>
 
         </View>
     );
@@ -73,9 +58,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        // //alignItems: 'center',
+        alignItems: 'center',
         alignContent: 'center',
-        // backgroundColor: '#ADD8E6',
+        backgroundColor: '#ADD8E6',
     },
     background: {
         position: 'absolute',

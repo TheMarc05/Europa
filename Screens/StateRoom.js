@@ -30,12 +30,11 @@ const StateRoom = ({ navigation, route }) => {
 
         return unsubscribe;
     }, [navigation]);
-    
 
     return (
         <View>
             <LinearGradient
-                // Background Linear Gradient
+                Background Linear Gradient
                 colors={['#ADD8E6', '#D6F3F2', 'white']}
                 style={styles.background}
             />
@@ -54,7 +53,7 @@ const StateRoom = ({ navigation, route }) => {
                     style={{ marginLeft: 10, width: 20, height: 20 }}
                 />
             </TouchableOpacity>
-
+            <ScrollView style={{bottom: 10, height: '80%' }}>
             <Image
                 style={{ alignSelf: "center", width: 220, height: 150, marginTop: 30, marginBottom: 30 }}
                 source={{
@@ -67,7 +66,7 @@ const StateRoom = ({ navigation, route }) => {
             <Text style={styles.details}>
                 {route.params.details}
             </Text>
-            
+            </ScrollView>
 
         </View>
     );
@@ -79,9 +78,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        // //alignItems: 'center',
+        alignItems: 'center',
         alignContent: 'center',
-        // backgroundColor: '#ADD8E6',
+        backgroundColor: '#ADD8E6',
     },
     background: {
         position: 'absolute',

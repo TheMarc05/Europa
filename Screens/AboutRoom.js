@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
 import {
-    SafeAreaView,
     StyleSheet,
     Text,
-    TextInput,
     Image,
     View,
     TouchableOpacity,
     ScrollView,
-    Keyboard,
 } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 
 
 const AboutRoom = ({ navigation, route }) => {
-    console.log("dasda: " + route.params.aboutPhoto)
+
     return (
         <View>
             <LinearGradient
@@ -23,8 +20,8 @@ const AboutRoom = ({ navigation, route }) => {
                 style={styles.background}
             />
 
-            <Text style={{ marginTop: 85, fontSize: 24, textAlign: 'center', color: 'black', fontWeight: '500' }}>
-                {route.params.aboutName}
+            <Text style={{ marginTop: 85, marginHorizontal: 50, fontSize: 24, textAlign: 'center', color: 'black', fontWeight: '500' }}>
+                {route.params.details}
             </Text>
 
             <TouchableOpacity
@@ -38,15 +35,17 @@ const AboutRoom = ({ navigation, route }) => {
                 />
             </TouchableOpacity>
 
-            {/* <Image
-                style={{ alignSelf: "center", width: 290, height: 230, marginTop: 20, marginBottom: 30 }}
-                source={{
-                    uri: route.params.aboutPhoto
-                }}
-            /> */}
-            <Text style={styles.details}>
-                {route.params.details}
-            </Text>
+            <ScrollView style={{ bottom: 10, height: '75%' }}>
+                <Image
+                    style={{ alignSelf: "center", width: 330, height: 230, marginTop: 20, marginBottom: 30 }}
+                    source={{
+                        uri: route.params.nume
+                    }}
+                />
+                <Text style={styles.details}>
+                    {route.params.aboutPhoto}
+                </Text>
+            </ScrollView>
 
         </View>
     );
