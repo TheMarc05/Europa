@@ -60,6 +60,17 @@ const Institutions = ({ navigation }) => {
         return true
     }
 
+    function makeid(length) {
+        var result = "";
+        var characters =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+
     return (
         <View>
             <LinearGradient
@@ -68,7 +79,7 @@ const Institutions = ({ navigation }) => {
                 style={styles.background}
             />
             <Text style={{ marginTop: 85, fontSize: 24, textAlign: 'center', color: '#3570EC', fontWeight: '500' }}>
-                Institutiile Uniunii Europene
+                Instituțiile Uniunii Europene
             </Text>
 
             <View style={{ marginBottom: 40, marginTop: 30 }}>
@@ -89,10 +100,10 @@ const Institutions = ({ navigation }) => {
 
 
 
-            <ScrollView style={{ height: '70%' }}>
+            <ScrollView style={{ bottom: 20, height: '70%' }}>
                 {
                     institution.filter(filterZZZ).map(({ data }) => (
-                        <InstitutionListItem key={data.id} enterInstitution={enterInstitution} institutionName={data.nume} id={data.id} institutionPhoto={data.photo} details={data.detalii} />
+                        <InstitutionListItem key={makeid(6)} enterInstitution={enterInstitution} institutionName={data.nume} id={data.id} institutionPhoto={data.photo} details={data.detalii} />
                     ))
                 }
             </ScrollView>
